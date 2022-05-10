@@ -20,9 +20,6 @@ type CounterPropsType = {
 
 const Counter = (props: CounterPropsType) => {
     const incValueHandler = () => {
-       /* if (props.counterValue === props.maxValue) {
-            props.setIsDisabledInc(true)
-        }*/
         props.setCounterValue(props.counterValue + 1)
     }
 

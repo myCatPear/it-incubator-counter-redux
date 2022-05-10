@@ -4,6 +4,7 @@ import Counter from "./components/Counter/Counter";
 import CounterAndSetter from './components/CounterAndSetter/CounterAndSetter';
 import Setter from "./components/Setter/Setter";
 
+
 function App() {
     //----------START USE STATE COUNTER 1 VERSION----------------
     const [startValue, setStartValue] = useState<number>(0) // начальное значение

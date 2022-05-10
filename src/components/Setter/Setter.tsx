@@ -35,7 +35,6 @@ const Setter: React.FC<SetterPropsType> = (
         setChangedInput(true)
         setIsDisabledSet(false)
         setStartValue(JSON.parse(e.currentTarget.value))
-
     }
 
     const onChangeMaxInputHandler = (e: ChangeEvent<HTMLInputElement>) => {

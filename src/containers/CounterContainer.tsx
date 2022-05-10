@@ -3,7 +3,7 @@ import CounterPresent from "../components/Counter/CounterPresent";
 import {StateType} from "../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {CounterType} from "../redux/counter-reducer";
-import {setCounterFromStartValueAC} from "../redux/actions";
+import {changeMaxValueAC, changeStartValueAC, setCounterFromStartValueAC} from "../redux/actions";
 
 export const CounterContainer = () => {
     const dispatch = useDispatch()
@@ -16,6 +16,9 @@ export const CounterContainer = () => {
 
     const setCounterFromStartValueHandler = () => dispatch(setCounterFromStartValueAC())
 
+    const changeStartValue = (newValue:number) => dispatch(changeStartValueAC(newValue))
+    const changeMaxValue = (newValue:number) => dispatch(changeMaxValueAC(newValue))
+
     return (
         <div>
             <CounterPresent
@@ -23,6 +26,8 @@ export const CounterContainer = () => {
                 maxValue={maxValue}
                 counter={counter}
                 setCounterFromStartValueHandler={setCounterFromStartValueHandler}
+                changeStartValue={changeStartValue}
+                changeMaxValue={changeMaxValue}
             />
         </div>
     );

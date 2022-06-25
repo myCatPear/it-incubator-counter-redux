@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import {Button, Container, Grid, TextField} from '@mui/material';
 import React from 'react';
 import s from './CounterPresent.module.css'
 
@@ -15,8 +15,8 @@ type CounterPresentPropsType = {
     isDisabledButtonSet: boolean,
     isDisabledButtonReset: boolean,
     isDisabledButtonIncrementCount: boolean,
-    maxCountValue:boolean,
-    resetCounterValue:() => void
+    maxCountValue: boolean,
+    resetCounterValue: () => void
 }
 
 const CounterPresent: React.FC<CounterPresentPropsType> = (props) => {
@@ -38,29 +38,59 @@ const CounterPresent: React.FC<CounterPresentPropsType> = (props) => {
     return (
         <>
             <div className={s.container}>
-                <div>
-                    startValue: <input
-                    type={"number"}
-                    value={startValue}
-                    onChange={(e) => changeStartValue(+e.currentTarget.value)}
-                />
-                </div>
-                <div>
+                <Container>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <div className={s.setter}>
+                                <div className={s.setter_start}>
+                                    <span className={s.setter__value}>startValue:</span>
+                                    <TextField
+                                        id="outlined-number"
+                                        label="Number"
+                                        type="number"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        value={startValue}
+                                        onChange={(e) => changeStartValue(+e.currentTarget.value)}
+                                    />
+                                </div>
+                                <div className={s.setter_max}>
+                                    <span className={s.setter__value}>maxValue:</span>
+                                    <TextField
+                                        id="outlined-number"
+                                        label="Number"
+                                        type="number"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        value={maxValue}
+                                        onChange={(e) => changeMaxValue(+e.currentTarget.value)}
 
-                    MaxValue: <input
-                    type={"number"}
-                    value={maxValue}
-                    onChange={(e) => changeMaxValue(+e.currentTarget.value)}
-                />
-                </div>
-                <div>
-                    <Button variant="contained" onClick={setCounterFromStartValueHandler} disabled={isDisabledButtonSet}>Set</Button>
-                    <Button variant="contained" onClick={incrementCounterValue} disabled={isDisabledButtonIncrementCount || maxCountValue}>+</Button>
-                    <Button variant="contained" onClick={resetCounterValue} disabled={isDisabledButtonReset}>reset</Button>
-                </div>
-                <div>
-                    {counter}
-                </div>
+                                    />
+                                </div>
+                                <Button variant="contained" onClick={setCounterFromStartValueHandler}
+                                        disabled={isDisabledButtonSet || errorInput}>Set</Button>
+                            </div>
+
+                        </Grid>
+
+                        <Grid item xs={6}>
+                            <div>
+                                {counter}
+                            </div>
+                            <div>
+
+                                <Button variant="contained" onClick={incrementCounterValue}
+                                        disabled={isDisabledButtonIncrementCount || maxCountValue}>+</Button>
+                                <Button variant="contained" onClick={resetCounterValue}
+                                        disabled={isDisabledButtonReset}>reset</Button>
+                            </div>
+                        </Grid>
+
+                    </Grid>
+                </Container>
+
             </div>
 
         </>

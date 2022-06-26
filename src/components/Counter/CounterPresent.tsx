@@ -1,4 +1,4 @@
-import {Button, Container, Grid, TextField} from '@mui/material';
+import {Button, TextField} from '@mui/material';
 import React from 'react';
 import s from './CounterPresent.module.css'
 
@@ -38,61 +38,65 @@ const CounterPresent: React.FC<CounterPresentPropsType> = (props) => {
     return (
         <>
             <div className={s.container}>
-                <Container>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
-                            <div className={s.setter}>
-                                <div className={s.setter_start}>
-                                    <span className={s.setter__value}>startValue:</span>
-                                    <TextField
-                                        id="outlined-number"
-                                        label="Number"
-                                        type="number"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        value={startValue}
-                                        onChange={(e) => changeStartValue(+e.currentTarget.value)}
-                                    />
-                                </div>
-                                <div className={s.setter_max}>
-                                    <span className={s.setter__value}>maxValue:</span>
-                                    <TextField
-                                        id="outlined-number"
-                                        label="Number"
-                                        type="number"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        value={maxValue}
-                                        onChange={(e) => changeMaxValue(+e.currentTarget.value)}
+                <div className={s.container__wrapper}>
+                    <div className={s.setter}>
+                        <div className={s.setter__item}>
+                            <span className={s.setter__value}>startValue:</span>
+                            <TextField
+                                id="outlined-number"
+                                label="Number"
+                                type="number"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                value={startValue}
+                                onChange={(e) => changeStartValue(+e.currentTarget.value)}
+                            />
+                        </div>
+                        <div className={s.setter__item}>
+                            <span className={s.setter__value}>maxValue:</span>
+                            <TextField
+                                id="outlined-number"
+                                label="Number"
+                                type="number"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                value={maxValue}
+                                onChange={(e) => changeMaxValue(+e.currentTarget.value)}
 
-                                    />
-                                </div>
-                                <Button variant="contained" onClick={setCounterFromStartValueHandler}
-                                        disabled={isDisabledButtonSet || errorInput}>Set</Button>
-                            </div>
+                            />
+                        </div>
+                        <Button
+                            className={s.setter_button}
+                            variant="contained"
+                            onClick={setCounterFromStartValueHandler}
+                            disabled={isDisabledButtonSet || errorInput}
+                        >Set
+                        </Button>
+                    </div>
+                    <div className={s.counter}>
+                        <div className={
+                            `
+                            ${s.counter__value} 
+                            ${!isDisabledButtonSet && s.counter__value_edit}
+                            ${errorInput && s.red}
+                            ${errorInput && s.bold}
+                            ${maxCountValue && s.red}
+                            `}>
+                            {counter}
+                        </div>
 
-                        </Grid>
-
-                        <Grid item xs={6}>
-                            <div>
-                                {counter}
-                            </div>
-                            <div>
-
-                                <Button variant="contained" onClick={incrementCounterValue}
-                                        disabled={isDisabledButtonIncrementCount || maxCountValue}>+</Button>
-                                <Button variant="contained" onClick={resetCounterValue}
-                                        disabled={isDisabledButtonReset}>reset</Button>
-                            </div>
-                        </Grid>
-
-                    </Grid>
-                </Container>
+                        <div className={s.buttons}>
+                            <Button variant="contained" onClick={incrementCounterValue}
+                                    disabled={isDisabledButtonIncrementCount || maxCountValue}>+</Button>
+                            <Button variant="contained" onClick={resetCounterValue}
+                                    disabled={isDisabledButtonReset}>reset</Button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-
         </>
 
     );

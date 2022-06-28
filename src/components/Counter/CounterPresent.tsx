@@ -82,7 +82,7 @@ const CounterPresent: React.FC<CounterPresentPropsType> = (props) => {
                             ${!isDisabledButtonSet && s.counter__value_edit}
                             ${errorInput && s.red}
                             ${errorInput && s.bold}
-                            ${maxCountValue && s.red}
+                            ${maxCountValue && counter !=='Enter the value' && s.red}
                             `}>
                             {counter}
                         </div>
